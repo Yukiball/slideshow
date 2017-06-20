@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>优酷动漫</title>
+	<link rel="stylesheet" href="轮播图.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="main">
+			<div>
+				<a href="#">
+					<img src="0510000058D88BFFADC0B005C0010C71.jpg" alt="正版新番放送表">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="05100000588C839D67BC3D55DD07DA80.jpg" alt="名侦探柯南">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="0510000058E8C108ADB91206E309BB7F.jpg" alt="境界之轮回">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="0510000058E74A0BADC0B006CA0A1E70.jpg" alt="重启咲良田">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="05100000587251B867BC3D56510E0C0B.jpg" alt="热诚传说X">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="0510000058E77522ADC0B006DC08481E.jpg" alt="ACG音乐汇">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+			<div>
+				<a href="#">
+					<img src="0510000058E3DDE3ADC0B006B90353B5.jpg" alt="王室教师海涅">
+					<span class="over"></span>
+					<span class="leftShadow"></span>
+					<span class="leftShadow"></span>
+				</a>
+			</div>
+		</div>
+		<div class="btn">
+			<ul>
+				<li num='0' class="move"></li>
+				<li num='1'></li>
+				<li num='2'></li>
+				<li num='3'></li>
+				<li num='4'></li>
+				<li num='5'></li>
+				<li num='6'></li>
+			</ul>
+		</div>
+		<div class="change left"><</div>
+		<div class="change right">></div>
+	</div>
+
+	<script src='jquery-3.2.0.js'></script>
+	<script src="jquery.easing.min.js"></script>
+	<script type="text/javascript">
+		var i = 0;
+		var timer;
+		var lock = true;
+		var key = true;
+		var list = {
+			init : function () {
+				this.creatFirst();
+				this.move();
+			},
+			creatFirst: function () {
+				$('.main div').eq(-2).css({'left' : -530,'height' : 100,'width' : 530,'top' : 85});
+				$('.main div').eq(-1).css({'left' : 0,'height' : 224,'width' : 530,'top' : 23});
+				$('.main div').eq(0).css({top: 0,left: 275,width: 640,height: 270}).find($('img')).css('zIndex',3);
+				$('.main div').eq(1).css({'left' : 660,'height' : 224,'width' : 530,'top' : 23})
+				$('.main div').eq(2).css({'left' : 1190,'height' : 100,'width' : 530,'top' : 85})
+			},
+			move: function () {
+				var that = this;
+				timer = setInterval(this.change,3000);
+				$('.main').on('mousemove',function () {
+					clearInterval(timer);
+				});
+				$('.main').on('mouseout',function () {
+					timer = setInterval(that.change,3000);
+				})
+				$('.right').on('click',this.change.bind(this))
+				$('.left').on('click',this.leftChange.bind(this))
+				// this.btn()
+				$('li').on('click', this.btn);
+			},
+			change: function () {
+				if (lock) {
+					lock = false;
+					key = false;
+					if (i >= 4){
+						i = -3;
+					};
+					$('.main div').eq(i - 1).css('zIndex',0).animate({'left' : -530,'height' : 100,'width' : 530,'top' : 85,'opacity': 0},1000,'swing').find($('img')).css('zIndex',1);
+					$('.main div').eq(i).css('zIndex',1).animate({'left' : 0,'height' : 224,'width' : 530,'top' : 23 , },1000,'swing').find($('img')).css('zIndex',1);
+					$('.main div').eq(i + 1).css('zIndex',2).animate({'top': 0,'left': 275,'width': 640,'height': 270},1000,'swing').find($('img')).css('zIndex',3);
+					$('.main div').eq(i + 2).css({'left' : 1190,'height' : 100,'width' : 530,'top' : 85, 'zIndex': 1}).animate({'left' : 660,'height' : 224,'width' : 530,'top' : 23, 'opacity': 1},1000,'swing').find($('img')).css('zIndex',1);
+					$('.main div').eq(i - 2).css('zIndex',1).css({'left' : -530,'height' : 100,'width' : 530,'top' : 85,'opacity': 0});
+					$('ul li').attr('class','');
+					$('ul li').eq(i + 1).attr('class','move');
+					i++;
+					setTimeout(function(){lock = true; key = true},1000)
+				};
+			},
+			leftChange: function () {
+				if (lock) {
+					lock = false;
+					key = false;
+					if (i <= -5){
+						i = 2;
+					};
+					$('.main div').eq(i - 3).css({'left': -530, 'width': 530, 'height': 100, 'top': 85 });
+					$('.main div').eq(i - 2).css({'left': -530, 'width': 530, 'height': 100, 'top': 85 ,'zIndex': 1}).animate({'left': 0, 'width': 530, 'height': 224, 'top': 23 ,'opacity': 1},1000, 'swing').find($('img')).css('zIndex',1);
+					$('.main div').eq(i - 1).css('zIndex',2).animate({'left': 224, 'width': 640, 'height': 270, 'top': 0},1000, 'swing').find($('img')).css('zIndex',3);
+					$('.main div').eq(i).css('zIndex',1).animate({'left': 660, 'width': 530, 'height': 224, 'top': 23},1000,'swing').find($('img')).css('zIndex',1);
+					$('.main div').eq(i + 1).css('zIndex',0).animate({'left': 1190, 'width': 530, 'height': 100, 'top': 85, 'opacity': 0},1000, 'swing');
+					$('ul li').attr('class','');
+					$('ul li').eq(i-1).attr('class','move');
+					i--;
+					setTimeout(function(){lock = true; key = true},1000)
+				};	
+			},
+			btn: function(){
+				var that = list;
+				console.log(that);
+				console.log(this);
+				var index = $(this).index();
+				var num = $('.move').attr('num');
+				// console.log(num);
+					if (key) {
+						key = false;
+						if (index - num == 1 || index - num == -6) {
+							that.change()						
+						}
+						if (index - num == -1 || index - num == 6) {
+							that.leftChange()
+						}
+						if (index - num > 1 && index - num < 6 || index - num < -1 && index - num > -6) {
+							if (lock) {
+								lock = false;
+								$('.main div').eq(i).css('zIndex',0).animate({'left': 575, 'width': 40, 'height': 17, 'top': 146 ,'opacity': 0},500,'swing').css({'left': -530, 'width': 530, 'height': 100, 'top': 85 })
+								$('.main div').eq(i-1).css('zIndex',1).animate({'left': 561, 'width': 33, 'height': 14, 'top': 144 ,'opacity': 0},500,'swing').css({'left': -530, 'width': 530, 'height': 100, 'top': 85 })
+								$('.main div').eq(i+1).css('zIndex',1).animate({'left': 589, 'width': 33, 'height': 14, 'top': 144 ,'opacity': 0},500,'swing').css({'left': -530, 'width': 530, 'height': 100, 'top': 85 })
+								lock = true
+							};
+							i = index;
+							if (i >=4) {
+								i = index - 7
+							};
+							if (i <= -5) {
+								i = index + 8
+							};
+							if (lock) {
+								lock = false;
+								$('.main div').eq(i).css('zIndex',2).animate({'left': 224, 'width': 640, 'height': 270, 'top': 0 ,'opacity': 1},500, 'swing').find($('img')).css('zIndex',3);
+								$('.main div').eq(i - 1).css('zIndex',1).animate({'left': 0, 'width': 530, 'height': 224, 'top': 23 ,'opacity': 1},500,'swing').find($('img')).css('zIndex',1);
+								$('.main div').eq(i + 1).css('zIndex',1).animate({'left': 660, 'width': 530, 'height': 224, 'top': 23 ,'opacity': 1},500,'swing').find($('img')).css('zIndex',1);
+								$('.main div').eq(i + 2).css({'left': 1190, 'width': 530, 'height': 100, 'top': 85 ,'opacity': 0 ,'zIndex': 0}).find($('img')).css('zIndex',0);
+								$('.main div').eq(i - 2).css({'left': -530, 'width': 530, 'height': 100, 'top': 85 ,'opacity': 0, 'zIndex': 0}).find($('img')).css('zIndex',0);
+								setTimeout(function(){lock = true},1000)
+							};						
+							$('ul li').attr('class','');
+							$('ul li').eq(i).attr('class','move');
+							setTimeout(function(){key = true},1000)
+						};
+					};	
+					
+			},
+		}
+		list.init();
+
+		
+
+
+
+
+
+
+
+
+
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,86 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrapper{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -595px;
+	margin-top: -300px;
+}
+.wrapper .main{
+	position: relative;
+	width: 1190px;
+	height: 310px;
+	overflow: hidden;
+}
+.wrapper .main div{
+	position: absolute;
+	top: 28px;
+	left: 1190px;
+	width: 530px;
+	height: 100px;	
+}
+.wrapper .main a {
+	position: absolute;
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+.wrapper .main a img{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+.wrapper .main a .over{
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background-color: black;
+	opacity: 0.5;
+}
+
+.wrapper .btn ul{
+	position: absolute;
+	left: 50%;
+	margin-top: 10px;
+	margin-left: -65px;
+}
+.wrapper .btn ul li{
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	background: black;
+	float: left;
+	margin-right: 10px;
+}
+.wrapper .btn ul .move{
+	background-color: #00f;
+}
+.wrapper .change{
+	top: 135px;
+	height: 40px;
+	width: 30px;
+	position: absolute;
+	z-index: 4;
+	opacity: 0.7;
+	line-height: 40px;
+	background-color: gray;
+	text-align: center;
+	color: #fff;
+}
+.wrapper .change:hover{
+	opacity: 0.9;
+	cursor: pointer;
+}
+.wrapper .left{
+	left: 10px;
+}
+.wrapper .right{
+	right: 10px;
+}
